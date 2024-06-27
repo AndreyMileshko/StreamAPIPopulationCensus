@@ -21,16 +21,17 @@ public class Main {
                 .count();                                   //Кол-во несовершеннолетних
 
         persons.stream()
+                .filter(person -> person.getSex() == Sex.MAN)
                 .filter(person -> person.getAge() >= 18)
                 .filter(person -> person.getAge() <= 27)
                 .map(Person::getFamily)
-                .collect(Collectors.toList());              //Кол-во призывников
+                .toList();              //Кол-во призывников
 
         persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
                 .filter(person -> person.getAge() > 18)
                 .filter(person -> person.getSex() == Sex.WOMAN? person.getAge() < 60 : person.getAge() < 65)
                 .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
